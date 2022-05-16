@@ -41,7 +41,7 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getAllCountries(Hydrator $hydrator): array
+    public function getAllCountries(Hydrator $hydrator)
     {
         return $this->post(
             'location/country/csv',
@@ -129,7 +129,7 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getAllSites($countryId, Hydrator $hydrator): array
+    public function getAllSites($countryId, Hydrator $hydrator)
     {
         return $this->post(
             "location/site/csv/{$countryId}",
@@ -173,7 +173,7 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getAllStreets($countryId, Hydrator $hydrator): array
+    public function getAllStreets($countryId, Hydrator $hydrator)
     {
         return $this->post(
             "location/street/csv/{$countryId}",
@@ -217,7 +217,7 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getAllComplexes($countryId, Hydrator $hydrator): array
+    public function getAllComplexes($countryId, Hydrator $hydrator)
     {
         return $this->post(
             "location/complex/csv/{$countryId}",
@@ -275,7 +275,7 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getAllPoi($countryId, Hydrator $hydrator): array
+    public function getAllPoi($countryId, Hydrator $hydrator)
     {
         return $this->post(
             "location/poi/csv/{$countryId}",
@@ -290,7 +290,7 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getAllPostcodes($countryId, Hydrator $hydrator): array
+    public function getAllPostcodes($countryId, Hydrator $hydrator)
     {
         return $this->post(
             "location/postcode/csv/{$countryId}",
@@ -308,7 +308,7 @@ trait ManagesLocationService
     public function getOffice($id, Hydrator $hydrator): array
     {
         return $this->post(
-            'location/office/{$id}',
+            "location/office/{$id}",
             $hydrator->hydrate(),
         );
     }
