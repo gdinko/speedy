@@ -50,27 +50,6 @@ Methods
 Commands
 
 ```bash
-#sync countries with database
-php artisan speedy:sync-countries  
-
-#sync cities with database
-php artisan speedy:sync-cities 
-
-#sync offices with database
-php artisan speedy:sync-offices 
-
-#sync querters with database
-php artisan speedy:sync-quarters 
-
-#sync stretts with database
-php artisan speedy:sync-streets
-
-#sync all nomenclatures with database
-php artisan speedy:sync-all
-
-#get today payments
-php artisan speedy:get-payments
-
 #get speedy api status
 php artisan speedy:api-status
 ```
@@ -104,6 +83,7 @@ If you discover any security related issues, please email dinko359@gmail.com ins
 ## Credits
 
 -   [Dinko Georgiev](https://github.com/gdinko)
+-   [silabg.com](https://www.silabg.com/) :heart:
 -   [All Contributors](../../contributors)
 
 ## License
