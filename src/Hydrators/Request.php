@@ -30,7 +30,7 @@ class Request
             $this->data,
             [
                 'userName' => Speedy::getUserName(),
-                'password' => Speedy::getPassword()
+                'password' => Speedy::getPassword(),
             ]
         );
     }

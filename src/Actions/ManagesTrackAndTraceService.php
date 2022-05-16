@@ -5,7 +5,7 @@ namespace Gdinko\Speedy\Actions;
 use Gdinko\Speedy\Hydrators\Request;
 
 trait ManagesTrackAndTraceService
-{    
+{
     /**
      * track
      *
@@ -19,7 +19,7 @@ trait ManagesTrackAndTraceService
             $request->hydrate(),
         );
     }
-    
+
     /**
      * bulkTrackingDataFiles
      *

@@ -6,7 +6,6 @@ use Gdinko\Speedy\Hydrators\Request;
 
 trait ManagesClientService
 {
-
     /**
      * getClient
      *

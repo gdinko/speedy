@@ -5,7 +5,7 @@ namespace Gdinko\Speedy\Actions;
 use Gdinko\Speedy\Hydrators\Request;
 
 trait ManagesCalculationService
-{    
+{
     /**
      * calculate
      *
