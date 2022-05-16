@@ -1,0 +1,66 @@
+{
+    "name": "gdinko/speedy",
+    "description": "Laravel Speedy API Wrapper",
+    "keywords": [
+        "gdinko",
+        "speedy",
+        "speedy laravel",
+        "laravel"
+    ],
+    "homepage": "https://github.com/gdinko/speedy",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Dinko Georgiev",
+            "email": "dinko359@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "guzzlehttp/guzzle": "^7.4",
+        "illuminate/support": "^8.0"
+    },
+    "require-dev": {
+        "nunomaduro/collision": "^5.11",
+        "nunomaduro/larastan": "^1.0",
+        "orchestra/testbench": "^6.0",
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-laravel": "^1.2",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.1",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gdinko\\Speedy\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Gdinko\\Speedy\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Gdinko\\Speedy\\SpeedyServiceProvider"
+            ],
+            "aliases": {
+                "Speedy": "Gdinko\\Speedy\\SpeedyFacade"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
