@@ -52,7 +52,7 @@ class GetCarrierSpeedyApiStatus extends Command
 
             $response = Speedy::getOwnClientId(new Request([]));
 
-            if (!empty($response['clientId'])) {
+            if (! empty($response['clientId'])) {
                 CarrierSpeedyApiStatus::create([
                     'code' => self::API_STATUS_OK,
                 ]);
