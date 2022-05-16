@@ -66,6 +66,16 @@ class Speedy
         ];
     }
 
+    public function getUserName()
+    {
+        return $this->user;
+    }
+
+    public function getPassword()
+    {
+        return $this->pass;
+    }
+
     public function setBaseUrl(string $baseUrl)
     {
         $this->baseUrl = rtrim($baseUrl, '/');
