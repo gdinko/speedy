@@ -50,13 +50,17 @@ Methods
 Commands
 
 ```bash
+#get today payments
+php artisan speedy:get-payments
+
 #get speedy api status
 php artisan speedy:api-status
 ```
 
 Models
 ```php
-//
+CarrierSpeedyPayment
+CarrierSpeedyApiStatus
 ```
 
 ## Examples
