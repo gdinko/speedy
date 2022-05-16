@@ -5,16 +5,16 @@ namespace Gdinko\Speedy;
 class Speedy
 {
     use MakesHttpRequests;
-    use Actions\ManagesShipmentService,
-        Actions\ManagesPrintService,
-        Actions\ManagesTrackAndTraceService,
-        Actions\ManagesPickupService,
-        Actions\ManagesLocationService,
-        Actions\ManagesCalculationService,
-        Actions\ManagesClientService,
-        Actions\ManagesValidationService,
-        Actions\ManagesServicesService,
-        Actions\ManagesPaymentsService;
+    use Actions\ManagesShipmentService;
+    use Actions\ManagesPrintService;
+    use Actions\ManagesTrackAndTraceService;
+    use Actions\ManagesPickupService;
+    use Actions\ManagesLocationService;
+    use Actions\ManagesCalculationService;
+    use Actions\ManagesClientService;
+    use Actions\ManagesValidationService;
+    use Actions\ManagesServicesService;
+    use Actions\ManagesPaymentsService;
 
     /**
      * Speedy API username
