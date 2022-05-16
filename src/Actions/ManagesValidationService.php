@@ -2,7 +2,7 @@
 
 namespace Gdinko\Speedy\Actions;
 
-use Gdinko\Speedy\Hydrators\Request;
+use Gdinko\Speedy\Interfaces\Hydrator;
 
 trait ManagesValidationService
 {
@@ -12,11 +12,11 @@ trait ManagesValidationService
      * @param  mixed $request
      * @return array
      */
-    public function validateAddress(Request $request): array
+    public function validateAddress(Hydrator $hydrator): array
     {
         return $this->post(
             'validation/address',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -26,11 +26,11 @@ trait ManagesValidationService
      * @param  mixed $request
      * @return array
      */
-    public function validatePostcode(Request $request): array
+    public function validatePostcode(Hydrator $hydrator): array
     {
         return $this->post(
             'validation/postcode',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -40,11 +40,11 @@ trait ManagesValidationService
      * @param  mixed $request
      * @return array
      */
-    public function validatePhone(Request $request): array
+    public function validatePhone(Hydrator $hydrator): array
     {
         return $this->post(
             'validation/phone',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -54,11 +54,11 @@ trait ManagesValidationService
      * @param  mixed $request
      * @return array
      */
-    public function validateShipment(Request $request): array
+    public function validateShipment(Hydrator $hydrator): array
     {
         return $this->post(
             'validation/shipment',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 }

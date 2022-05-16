@@ -2,7 +2,7 @@
 
 namespace Gdinko\Speedy\Actions;
 
-use Gdinko\Speedy\Hydrators\Request;
+use Gdinko\Speedy\Interfaces\Hydrator;
 
 trait ManagesServicesService
 {
@@ -12,11 +12,11 @@ trait ManagesServicesService
      * @param  mixed $request
      * @return array
      */
-    public function services(Request $request): array
+    public function services(Hydrator $hydrator): array
     {
         return $this->post(
             'services',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -26,11 +26,11 @@ trait ManagesServicesService
      * @param  mixed $request
      * @return array
      */
-    public function destinationServices(Request $request): array
+    public function destinationServices(Hydrator $hydrator): array
     {
         return $this->post(
             'services/destination',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 }

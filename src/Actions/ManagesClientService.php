@@ -2,7 +2,7 @@
 
 namespace Gdinko\Speedy\Actions;
 
-use Gdinko\Speedy\Hydrators\Request;
+use Gdinko\Speedy\Interfaces\Hydrator;;
 
 trait ManagesClientService
 {
@@ -13,11 +13,11 @@ trait ManagesClientService
      * @param  mixed $request
      * @return array
      */
-    public function getClient($id, Request $request): array
+    public function getClient($id, Hydrator $hydrator): array
     {
         return $this->post(
             "client/{$id}",
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -27,11 +27,11 @@ trait ManagesClientService
      * @param  mixed $request
      * @return array
      */
-    public function getContractClients(Request $request): array
+    public function getContractClients(Hydrator $hydrator): array
     {
         return $this->post(
             'client/contract',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -41,11 +41,11 @@ trait ManagesClientService
      * @param  mixed $request
      * @return array
      */
-    public function createContact(Request $request): array
+    public function createContact(Hydrator $hydrator): array
     {
         return $this->post(
             'client/contact',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -56,11 +56,11 @@ trait ManagesClientService
      * @param  mixed $request
      * @return array
      */
-    public function getContactByExternalId($id, Request $request): array
+    public function getContactByExternalId($id, Hydrator $hydrator): array
     {
         return $this->post(
             "client/contact/external/{$id}",
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -70,11 +70,11 @@ trait ManagesClientService
      * @param  mixed $request
      * @return array
      */
-    public function getOwnClientId(Request $request): array
+    public function getOwnClientId(Hydrator $hydrator): array
     {
         return $this->post(
             'client',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 }

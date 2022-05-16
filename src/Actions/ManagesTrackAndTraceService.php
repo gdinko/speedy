@@ -2,7 +2,7 @@
 
 namespace Gdinko\Speedy\Actions;
 
-use Gdinko\Speedy\Hydrators\Request;
+use Gdinko\Speedy\Interfaces\Hydrator;
 
 trait ManagesTrackAndTraceService
 {
@@ -12,11 +12,11 @@ trait ManagesTrackAndTraceService
      * @param  mixed $request
      * @return array
      */
-    public function track(Request $request): array
+    public function track(Hydrator $hydrator): array
     {
         return $this->post(
             'track',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -26,11 +26,11 @@ trait ManagesTrackAndTraceService
      * @param  mixed $request
      * @return array
      */
-    public function bulkTrackingDataFiles(Request $request): array
+    public function bulkTrackingDataFiles(Hydrator $hydrator): array
     {
         return $this->post(
             'track/bulk',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 }

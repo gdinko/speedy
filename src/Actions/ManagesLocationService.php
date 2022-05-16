@@ -2,7 +2,7 @@
 
 namespace Gdinko\Speedy\Actions;
 
-use Gdinko\Speedy\Hydrators\Request;
+use Gdinko\Speedy\Interfaces\Hydrator;
 
 trait ManagesLocationService
 {
@@ -13,11 +13,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getCountry($id, Request $request): array
+    public function getCountry($id, Hydrator $hydrator): array
     {
         return $this->post(
             "location/country/{$id}",
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -27,11 +27,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function findCountry(Request $request): array
+    public function findCountry(Hydrator $hydrator): array
     {
         return $this->post(
             'location/country',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -41,11 +41,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getAllCountries(Request $request): array
+    public function getAllCountries(Hydrator $hydrator): array
     {
         return $this->post(
             'location/country/csv',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -56,11 +56,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getState($id, Request $request): array
+    public function getState($id, Hydrator $hydrator): array
     {
         return $this->post(
             "location/state/{$id}",
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -70,11 +70,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function findState(Request $request): array
+    public function findState(Hydrator $hydrator): array
     {
         return $this->post(
             'location/state',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -85,11 +85,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getAllStates($countryId, Request $request): array
+    public function getAllStates($countryId, Hydrator $hydrator): array
     {
         return $this->post(
             "location/state/csv/{$countryId}",
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -100,11 +100,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getSite($id, Request $request): array
+    public function getSite($id, Hydrator $hydrator): array
     {
         return $this->post(
             "location/site/{$id}",
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -114,11 +114,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function findSite(Request $request): array
+    public function findSite(Hydrator $hydrator): array
     {
         return $this->post(
             'location/site',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -129,11 +129,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getAllSites($countryId, Request $request): array
+    public function getAllSites($countryId, Hydrator $hydrator): array
     {
         return $this->post(
             "location/site/csv/{$countryId}",
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -144,11 +144,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getStreet($id, Request $request): array
+    public function getStreet($id, Hydrator $hydrator): array
     {
         return $this->post(
             "location/street/{$id}",
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -158,11 +158,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function findStreet(Request $request): array
+    public function findStreet(Hydrator $hydrator): array
     {
         return $this->post(
             'location/street',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -173,11 +173,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getAllStreets($countryId, Request $request): array
+    public function getAllStreets($countryId, Hydrator $hydrator): array
     {
         return $this->post(
             "location/street/csv/{$countryId}",
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -188,11 +188,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getComplex($id, Request $request): array
+    public function getComplex($id, Hydrator $hydrator): array
     {
         return $this->post(
             "location/complex/{$id}",
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -202,11 +202,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function findComplex(Request $request): array
+    public function findComplex(Hydrator $hydrator): array
     {
         return $this->post(
             'location/complex',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -217,11 +217,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getAllComplexes($countryId, Request $request): array
+    public function getAllComplexes($countryId, Hydrator $hydrator): array
     {
         return $this->post(
             "location/complex/csv/{$countryId}",
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -231,11 +231,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function findBlock(Request $request): array
+    public function findBlock(Hydrator $hydrator): array
     {
         return $this->post(
             'location/block',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -246,11 +246,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getPoi($id, Request $request): array
+    public function getPoi($id, Hydrator $hydrator): array
     {
         return $this->post(
             "location/poi/{$id}",
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -260,11 +260,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function findPoi(Request $request): array
+    public function findPoi(Hydrator $hydrator): array
     {
         return $this->post(
             'location/poi',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -275,11 +275,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getAllPoi($countryId, Request $request): array
+    public function getAllPoi($countryId, Hydrator $hydrator): array
     {
         return $this->post(
             "location/poi/csv/{$countryId}",
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -290,11 +290,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getAllPostcodes($countryId, Request $request): array
+    public function getAllPostcodes($countryId, Hydrator $hydrator): array
     {
         return $this->post(
             "location/postcode/csv/{$countryId}",
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -305,11 +305,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getOffice($id, Request $request): array
+    public function getOffice($id, Hydrator $hydrator): array
     {
         return $this->post(
             'location/office/{$id}',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -319,11 +319,11 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function findOffice(Request $request): array
+    public function findOffice(Hydrator $hydrator): array
     {
         return $this->post(
             'location/office',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 }

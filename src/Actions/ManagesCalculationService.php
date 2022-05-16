@@ -2,7 +2,7 @@
 
 namespace Gdinko\Speedy\Actions;
 
-use Gdinko\Speedy\Hydrators\Request;
+use Gdinko\Speedy\Interfaces\Hydrator;
 
 trait ManagesCalculationService
 {
@@ -12,11 +12,11 @@ trait ManagesCalculationService
      * @param  mixed $request
      * @return array
      */
-    public function calculate(Request $request): array
+    public function calculate(Hydrator $hydrator): array
     {
         return $this->post(
             'calculate',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 }

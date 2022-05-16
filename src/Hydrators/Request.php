@@ -3,8 +3,9 @@
 namespace Gdinko\Speedy\Hydrators;
 
 use Gdinko\Speedy\Facades\Speedy;
+use Gdinko\Speedy\Interfaces\Hydrator;
 
-class Request
+class Request implements Hydrator
 {
     protected $data = [];
 

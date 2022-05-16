@@ -2,7 +2,7 @@
 
 namespace Gdinko\Speedy\Actions;
 
-use Gdinko\Speedy\Hydrators\Request;
+use Gdinko\Speedy\Interfaces\Hydrator;
 
 trait ManagesShipmentService
 {
@@ -12,11 +12,11 @@ trait ManagesShipmentService
      * @param  mixed $request
      * @return array
      */
-    public function createShipment(Request $request): array
+    public function createShipment(Hydrator $hydrator): array
     {
         return $this->post(
             'shipment',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -26,11 +26,11 @@ trait ManagesShipmentService
      * @param  mixed $request
      * @return array
      */
-    public function cancelShipment(Request $request): array
+    public function cancelShipment(Hydrator $hydrator): array
     {
         return $this->post(
             'shipment/cancel',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -40,11 +40,11 @@ trait ManagesShipmentService
      * @param  mixed $request
      * @return array
      */
-    public function addParcel(Request $request): array
+    public function addParcel(Hydrator $hydrator): array
     {
         return $this->post(
             'shipment/add_parcel',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -54,11 +54,11 @@ trait ManagesShipmentService
      * @param  mixed $request
      * @return array
      */
-    public function finalizePendingShipment(Request $request): array
+    public function finalizePendingShipment(Hydrator $hydrator): array
     {
         return $this->post(
             'shipment/finalize',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -68,11 +68,11 @@ trait ManagesShipmentService
      * @param  mixed $request
      * @return array
      */
-    public function shipmentInformation(Request $request): array
+    public function shipmentInformation(Hydrator $hydrator): array
     {
         return $this->post(
             'shipment/info',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -83,11 +83,11 @@ trait ManagesShipmentService
      * @param  mixed $request
      * @return array
      */
-    public function secondaryShipments($shipmentId, Request $request): array
+    public function secondaryShipments($shipmentId, Hydrator $hydrator): array
     {
         return $this->post(
             "shipment/{$shipmentId}/secondary",
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -97,11 +97,11 @@ trait ManagesShipmentService
      * @param  mixed $request
      * @return array
      */
-    public function updateShipment(Request $request): array
+    public function updateShipment(Hydrator $hydrator): array
     {
         return $this->post(
             'shipment/update',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -111,11 +111,11 @@ trait ManagesShipmentService
      * @param  mixed $request
      * @return array
      */
-    public function updateShipmentProperties(Request $request): array
+    public function updateShipmentProperties(Hydrator $hydrator): array
     {
         return $this->post(
             'shipment/update/properties',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -125,11 +125,11 @@ trait ManagesShipmentService
      * @param  mixed $request
      * @return array
      */
-    public function findParcelsByReference(Request $request): array
+    public function findParcelsByReference(Hydrator $hydrator): array
     {
         return $this->post(
             'shipment/search',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -139,11 +139,11 @@ trait ManagesShipmentService
      * @param  mixed $request
      * @return array
      */
-    public function handoverToCourier(Request $request): array
+    public function handoverToCourier(Hydrator $hydrator): array
     {
         return $this->post(
             'shipment/handover',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 }

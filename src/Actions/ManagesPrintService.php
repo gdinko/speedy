@@ -2,7 +2,7 @@
 
 namespace Gdinko\Speedy\Actions;
 
-use Gdinko\Speedy\Hydrators\Request;
+use Gdinko\Speedy\Interfaces\Hydrator;
 
 trait ManagesPrintService
 {
@@ -12,11 +12,11 @@ trait ManagesPrintService
      * @param  mixed $request
      * @return array
      */
-    public function print(Request $request): array
+    public function print(Hydrator $hydrator): array
     {
         return $this->post(
             'print',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -26,11 +26,11 @@ trait ManagesPrintService
      * @param  mixed $request
      * @return array
      */
-    public function extendedPrint(Request $request): array
+    public function extendedPrint(Hydrator $hydrator): array
     {
         return $this->post(
             'print/extended',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -40,11 +40,11 @@ trait ManagesPrintService
      * @param  mixed $request
      * @return array
      */
-    public function labelInfo(Request $request): array
+    public function labelInfo(Hydrator $hydrator): array
     {
         return $this->post(
             'print/labelInfo',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -54,11 +54,11 @@ trait ManagesPrintService
      * @param  mixed $request
      * @return array
      */
-    public function printVoucher(Request $request): array
+    public function printVoucher(Hydrator $hydrator): array
     {
         return $this->post(
             'print/voucher',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 }

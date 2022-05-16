@@ -2,7 +2,7 @@
 
 namespace Gdinko\Speedy\Actions;
 
-use Gdinko\Speedy\Hydrators\Request;
+use Gdinko\Speedy\Interfaces\Hydrator;
 
 trait ManagesPickupService
 {
@@ -12,11 +12,11 @@ trait ManagesPickupService
      * @param  mixed $request
      * @return array
      */
-    public function pickup(Request $request): array
+    public function pickup(Hydrator $hydrator): array
     {
         return $this->post(
             'pickup',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 
@@ -26,11 +26,11 @@ trait ManagesPickupService
      * @param  mixed $request
      * @return array
      */
-    public function pickupTerms(Request $request): array
+    public function pickupTerms(Hydrator $hydrator): array
     {
         return $this->post(
             'pickup/terms',
-            $request->hydrate(),
+            $hydrator->hydrate(),
         );
     }
 }
