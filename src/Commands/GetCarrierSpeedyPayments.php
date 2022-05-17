@@ -93,19 +93,18 @@ class GetCarrierSpeedyPayments extends Command
         $payments = Speedy::payments(new Request([
             'fromDate' => $dateFrom,
             'toDate' => $dateTo,
-            'includeDetails' => true
+            'includeDetails' => true,
         ]));
 
         $bar = $this->output->createProgressBar($payments['totalPayouts'] ?: 0);
 
         $bar->start();
 
-        if (!empty($payments['payouts'])) {
+        if (! empty($payments['payouts'])) {
             foreach ($payments['payouts'] as $payment) {
                 $validated = $this->validated($payment);
 
                 foreach ($validated['details'] as $paymentDetail) {
-
                     $carrierSpeedyPayment = CarrierSpeedyPayment::create([
                         'doc_id' => $validated['docId'],
                         'shipment_id' => $paymentDetail['shipmentId'],

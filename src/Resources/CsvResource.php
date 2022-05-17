@@ -14,10 +14,9 @@ class CsvResource
         string $enclosure = "\"",
         string $escape = "\\"
     ) {
-
         $csvLines = explode(PHP_EOL, $string);
 
-        if (!empty($csvLines)) {
+        if (! empty($csvLines)) {
             foreach ($csvLines as $line) {
                 $this->data[] = \str_getcsv($line, $separator, $enclosure, $escape);
             }
