@@ -171,7 +171,7 @@ use Gdinko\Speedy\Hydrators\Request;
 dd(
     Speedy::getAllCountries(
         new Request([])
-    )
+    )->toArray()
 );
 ```
 

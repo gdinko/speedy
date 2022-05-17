@@ -32,7 +32,7 @@ trait MakesHttpRequests
                 throw new SpeedyException(
                     $e->getMessage(),
                     $e->getCode(),
-                    $response->json()
+                    $response->json() ?: [$response->body()]
                 );
             });
 
