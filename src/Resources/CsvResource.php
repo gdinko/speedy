@@ -16,11 +16,45 @@ class CsvResource
     ) {
         $csvLines = explode(PHP_EOL, $string);
 
-        if (! empty($csvLines)) {
+        if (!empty($csvLines)) {
+
+            $i = 0;
+            $header = [];
+
             foreach ($csvLines as $line) {
-                $this->data[] = \str_getcsv($line, $separator, $enclosure, $escape);
+
+                if (!empty($line)) {
+
+                    $csvRow = \str_getcsv($line, $separator, $enclosure, $escape);
+
+                    if ($i == 0) {
+                        $header = $csvRow;
+                    }
+
+                    $this->data[] = $this->replaceKeys($csvRow, $header);
+
+                    $i++;
+                }
             }
         }
+    }
+
+    /**
+     * replaceKeys
+     *
+     * @param  array $target
+     * @param  array $keys
+     * @return array
+     */
+    private function replaceKeys(array $target, array $keys): array
+    {
+        $data = [];
+
+        foreach ($target as $key => $value) {
+            $data[$keys[$key]] = $value;
+        }
+
+        return $data;
     }
 
     /**

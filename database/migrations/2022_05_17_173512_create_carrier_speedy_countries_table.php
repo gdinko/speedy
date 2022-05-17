@@ -21,7 +21,7 @@ class CreateCarrierSpeedyCountriesTable extends Migration
             $table->string('name_en')->nullable()->index();
             $table->char('iso_alpha2', 2);
             $table->char('iso_alpha3', 3)->index();
-            $table->string('post_code_formats');
+            $table->string('post_code_formats')->nullable();
             $table->tinyInteger('require_state')->nullable()->default(0);
             $table->string('address_type')->nullable();
             $table->string('currency_code')->nullable();

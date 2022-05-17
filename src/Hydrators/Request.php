@@ -15,7 +15,7 @@ class Request implements Hydrator
      * @param  array $data
      * @return void
      */
-    public function __construct(array $data)
+    public function __construct(array $data = [])
     {
         $this->data = $data;
     }
