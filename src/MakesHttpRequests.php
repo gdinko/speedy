@@ -12,9 +12,9 @@ trait MakesHttpRequests
         return $this->request('get', $url);
     }
 
-    public function post($url, array $data = [])
+    public function post($url, array $data = [], $wantBody = false)
     {
-        return $this->request('post', $url, $data);
+        return $this->request('post', $url, $data, $wantBody);
     }
 
     public function put($url, array $data = [])
@@ -22,7 +22,7 @@ trait MakesHttpRequests
         return $this->request('put', $url, $data);
     }
 
-    public function request($verb, $url, $data = [])
+    public function request($verb, $url, $data = [], $wantBody = false)
     {
         $response = Http::withBasicAuth($this->user, $this->pass)
             ->timeout($this->timeout)
@@ -35,6 +35,10 @@ trait MakesHttpRequests
                     $response->json()
                 );
             });
+
+        if ($wantBody) {
+            return $response->body();
+        }
 
         return $response->json();
     }

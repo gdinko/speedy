@@ -4,8 +4,6 @@ namespace Gdinko\Speedy\Actions;
 
 use Gdinko\Speedy\Interfaces\Hydrator;
 
-;
-
 trait ManagesClientService
 {
     /**

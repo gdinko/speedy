@@ -3,6 +3,7 @@
 namespace Gdinko\Speedy\Actions;
 
 use Gdinko\Speedy\Interfaces\Hydrator;
+use Gdinko\Speedy\Resources\CsvResource;
 
 trait ManagesLocationService
 {
@@ -41,12 +42,13 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getAllCountries(Hydrator $hydrator)
+    public function getAllCountries(Hydrator $hydrator): array
     {
-        return $this->post(
+        return (new CsvResource($this->post(
             'location/country/csv',
             $hydrator->hydrate(),
-        );
+            true
+        )))->toArray();
     }
 
     /**
@@ -129,12 +131,13 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getAllSites($countryId, Hydrator $hydrator)
+    public function getAllSites($countryId, Hydrator $hydrator): array
     {
-        return $this->post(
+        return (new CsvResource($this->post(
             "location/site/csv/{$countryId}",
             $hydrator->hydrate(),
-        );
+            true
+        )))->toArray();
     }
 
     /**
@@ -173,12 +176,13 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getAllStreets($countryId, Hydrator $hydrator)
+    public function getAllStreets($countryId, Hydrator $hydrator): array
     {
-        return $this->post(
+        return (new CsvResource($this->post(
             "location/street/csv/{$countryId}",
             $hydrator->hydrate(),
-        );
+            true
+        )))->toArray();
     }
 
     /**
@@ -217,12 +221,13 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getAllComplexes($countryId, Hydrator $hydrator)
+    public function getAllComplexes($countryId, Hydrator $hydrator): array
     {
-        return $this->post(
+        return (new CsvResource($this->post(
             "location/complex/csv/{$countryId}",
             $hydrator->hydrate(),
-        );
+            true
+        )))->toArray();
     }
 
     /**
@@ -275,12 +280,13 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getAllPoi($countryId, Hydrator $hydrator)
+    public function getAllPoi($countryId, Hydrator $hydrator): array
     {
-        return $this->post(
+        return (new CsvResource($this->post(
             "location/poi/csv/{$countryId}",
             $hydrator->hydrate(),
-        );
+            true
+        )))->toArray();
     }
 
     /**
@@ -290,12 +296,13 @@ trait ManagesLocationService
      * @param  mixed $request
      * @return array
      */
-    public function getAllPostcodes($countryId, Hydrator $hydrator)
+    public function getAllPostcodes($countryId, Hydrator $hydrator): array
     {
-        return $this->post(
+        return (new CsvResource($this->post(
             "location/postcode/csv/{$countryId}",
             $hydrator->hydrate(),
-        );
+            true
+        )))->toArray();
     }
 
     /**

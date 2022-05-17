@@ -2,6 +2,8 @@
 
 namespace Gdinko\Speedy;
 
+use Gdinko\Speedy\Commands\GetCarrierSpeedyApiStatus;
+use Gdinko\Speedy\Commands\GetCarrierSpeedyPayments;
 use Illuminate\Support\ServiceProvider;
 
 class SpeedyServiceProvider extends ServiceProvider
@@ -20,6 +22,8 @@ class SpeedyServiceProvider extends ServiceProvider
 
             // Registering package commands.
             $this->commands([
+                GetCarrierSpeedyPayments::class,
+                GetCarrierSpeedyApiStatus::class,
             ]);
         }
     }
