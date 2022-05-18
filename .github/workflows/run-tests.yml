@@ -45,18 +45,3 @@ jobs:
 
       - name: Execute tests
         run: ./vendor/bin/pest
-
-      - name: Views logs
-        run: |
-          pwd
-          ls -la
-          cd build
-          ls -la 
-
-      - name: Generate test coverage badge
-        uses: timkrase/phpunit-coverage-badge@v1.2.0
-        with:
-          report: 'build/logs/clover.xml'
-          coverage_badge_path: 'badge-coverage.svg'
-          push_badge: true
-          repo_token: ${{ secrets.GITHUB_TOKEN }}

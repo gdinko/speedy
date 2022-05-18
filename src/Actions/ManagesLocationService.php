@@ -11,7 +11,7 @@ trait ManagesLocationService
      * getCountry
      *
      * @param  mixed $id
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function getCountry($id, Hydrator $hydrator): array
@@ -25,7 +25,7 @@ trait ManagesLocationService
     /**
      * findCountry
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function findCountry(Hydrator $hydrator): array
@@ -39,7 +39,7 @@ trait ManagesLocationService
     /**
      * getAllCountries
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return object
      */
     public function getAllCountries(Hydrator $hydrator): object
@@ -55,7 +55,7 @@ trait ManagesLocationService
      * getState
      *
      * @param  mixed $id
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function getState($id, Hydrator $hydrator): array
@@ -69,7 +69,7 @@ trait ManagesLocationService
     /**
      * findState
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function findState(Hydrator $hydrator): array
@@ -84,7 +84,7 @@ trait ManagesLocationService
      * getAllStates
      *
      * @param  mixed $countryId
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return object
      */
     public function getAllStates($countryId, Hydrator $hydrator): object
@@ -100,7 +100,7 @@ trait ManagesLocationService
      * getSite
      *
      * @param  mixed $id
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function getSite($id, Hydrator $hydrator): array
@@ -114,7 +114,7 @@ trait ManagesLocationService
     /**
      * findSite
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function findSite(Hydrator $hydrator): array
@@ -129,7 +129,7 @@ trait ManagesLocationService
      * getAllSites
      *
      * @param  mixed $countryId
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return object
      */
     public function getAllSites($countryId, Hydrator $hydrator): object
@@ -145,7 +145,7 @@ trait ManagesLocationService
      * getStreet
      *
      * @param  mixed $id
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function getStreet($id, Hydrator $hydrator): array
@@ -159,7 +159,7 @@ trait ManagesLocationService
     /**
      * findStreet
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function findStreet(Hydrator $hydrator): array
@@ -174,7 +174,7 @@ trait ManagesLocationService
      * getAllStreets
      *
      * @param  mixed $countryId
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return object
      */
     public function getAllStreets($countryId, Hydrator $hydrator): object
@@ -190,7 +190,7 @@ trait ManagesLocationService
      * getComplex
      *
      * @param  mixed $id
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function getComplex($id, Hydrator $hydrator): array
@@ -204,7 +204,7 @@ trait ManagesLocationService
     /**
      * findComplex
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function findComplex(Hydrator $hydrator): array
@@ -219,7 +219,7 @@ trait ManagesLocationService
      * getAllComplexes
      *
      * @param  mixed $countryId
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return object
      */
     public function getAllComplexes($countryId, Hydrator $hydrator): object
@@ -234,7 +234,7 @@ trait ManagesLocationService
     /**
      * findBlock
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function findBlock(Hydrator $hydrator): array
@@ -249,7 +249,7 @@ trait ManagesLocationService
      * getPoi
      *
      * @param  mixed $id
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function getPoi($id, Hydrator $hydrator): array
@@ -263,7 +263,7 @@ trait ManagesLocationService
     /**
      * findPoi
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function findPoi(Hydrator $hydrator): array
@@ -278,7 +278,7 @@ trait ManagesLocationService
      * getAllPoi
      *
      * @param  mixed $countryId
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return object
      */
     public function getAllPoi($countryId, Hydrator $hydrator): object
@@ -294,7 +294,7 @@ trait ManagesLocationService
      * getAllPostcodes
      *
      * @param  mixed $countryId
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return object
      */
     public function getAllPostcodes($countryId, Hydrator $hydrator): object
@@ -310,7 +310,7 @@ trait ManagesLocationService
      * getOffice
      *
      * @param  mixed $id
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function getOffice($id, Hydrator $hydrator): array
@@ -324,7 +324,7 @@ trait ManagesLocationService
     /**
      * findOffice
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function findOffice(Hydrator $hydrator): array
@@ -332,6 +332,6 @@ trait ManagesLocationService
         return $this->post(
             'location/office',
             $hydrator->hydrate(),
-        );
+        )['offices'] ?? [];
     }
 }

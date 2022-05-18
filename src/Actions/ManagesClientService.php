@@ -10,7 +10,7 @@ trait ManagesClientService
      * getClient
      *
      * @param  mixed $id
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function getClient($id, Hydrator $hydrator): array
@@ -24,7 +24,7 @@ trait ManagesClientService
     /**
      * getContractClients
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function getContractClients(Hydrator $hydrator): array
@@ -38,7 +38,7 @@ trait ManagesClientService
     /**
      * createContact
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function createContact(Hydrator $hydrator): array
@@ -53,7 +53,7 @@ trait ManagesClientService
      * getContactByExternalId
      *
      * @param  mixed $id
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function getContactByExternalId($id, Hydrator $hydrator): array
@@ -67,7 +67,7 @@ trait ManagesClientService
     /**
      * getOwnClientId
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function getOwnClientId(Hydrator $hydrator): array

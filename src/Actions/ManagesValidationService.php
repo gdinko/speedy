@@ -9,7 +9,7 @@ trait ManagesValidationService
     /**
      * validateAddress
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function validateAddress(Hydrator $hydrator): array
@@ -23,7 +23,7 @@ trait ManagesValidationService
     /**
      * validatePostcode
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function validatePostcode(Hydrator $hydrator): array
@@ -37,7 +37,7 @@ trait ManagesValidationService
     /**
      * validatePhone
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function validatePhone(Hydrator $hydrator): array
@@ -51,7 +51,7 @@ trait ManagesValidationService
     /**
      * validateShipment
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function validateShipment(Hydrator $hydrator): array

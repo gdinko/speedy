@@ -9,7 +9,7 @@ trait ManagesCalculationService
     /**
      * calculate
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function calculate(Hydrator $hydrator): array

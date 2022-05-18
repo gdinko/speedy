@@ -9,7 +9,7 @@ trait ManagesPrintService
     /**
      * print
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function print(Hydrator $hydrator): array
@@ -23,7 +23,7 @@ trait ManagesPrintService
     /**
      * extendedPrint
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function extendedPrint(Hydrator $hydrator): array
@@ -37,7 +37,7 @@ trait ManagesPrintService
     /**
      * labelInfo
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function labelInfo(Hydrator $hydrator): array
@@ -51,7 +51,7 @@ trait ManagesPrintService
     /**
      * printVoucher
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function printVoucher(Hydrator $hydrator): array

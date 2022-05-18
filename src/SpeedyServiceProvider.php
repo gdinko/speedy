@@ -5,6 +5,7 @@ namespace Gdinko\Speedy;
 use Gdinko\Speedy\Commands\GetCarrierSpeedyApiStatus;
 use Gdinko\Speedy\Commands\GetCarrierSpeedyPayments;
 use Gdinko\Speedy\Commands\SyncCarrierSpeedyCountries;
+use Gdinko\Speedy\Commands\SyncCarrierSpeedyOffices;
 use Illuminate\Support\ServiceProvider;
 
 class SpeedyServiceProvider extends ServiceProvider
@@ -26,6 +27,7 @@ class SpeedyServiceProvider extends ServiceProvider
                 GetCarrierSpeedyPayments::class,
                 GetCarrierSpeedyApiStatus::class,
                 SyncCarrierSpeedyCountries::class,
+                SyncCarrierSpeedyOffices::class,
             ]);
         }
     }

@@ -4,7 +4,6 @@
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/gdinko/speedy/run-tests?label=tests)](https://github.com/gdinko/speedy/actions?query=workflow%3Arun-tests+branch%3Amaster)
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/gdinko/speedy/Check%20&%20fix%20styling?label=code%20style)](https://github.com/gdinko/speedy/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/gdinko/speedy.svg?style=flat-square)](https://packagist.org/packages/gdinko/speedy)
-[![Test Coverage](https://raw.githubusercontent.com/gdinko/speedy/master/badge-coverage.svg)](https://packagist.org/packages/gdinko/speedy)
 
 
 [Speedy JSON API Documentation](https://services.speedy.bg/api/api_examples.html)
@@ -81,24 +80,24 @@ Speedy::pickupTerms(Hydrator $hydrator): array
 //Location Service
 Speedy::getCountry($id, Hydrator $hydrator): array
 Speedy::findCountry(Hydrator $hydrator): array
-Speedy::getAllCountries(Hydrator $hydrator): array
+Speedy::getAllCountries(Hydrator $hydrator): object
 Speedy::getState($id, Hydrator $hydrator): array
 Speedy::findState(Hydrator $hydrator): array
-Speedy::getAllStates($countryId, Hydrator $hydrator): array
+Speedy::getAllStates($countryId, Hydrator $hydrator): object
 Speedy::getSite($id, Hydrator $hydrator): array
 Speedy::findSite(Hydrator $hydrator): array
-Speedy::getAllSites($countryId, Hydrator $hydrator): array
+Speedy::getAllSites($countryId, Hydrator $hydrator): object
 Speedy::getStreet($id, Hydrator $hydrator): array
 Speedy::findStreet(Hydrator $hydrator): array
-Speedy::getAllStreets($countryId, Hydrator $hydrator): array
+Speedy::getAllStreets($countryId, Hydrator $hydrator): object
 Speedy::getComplex($id, Hydrator $hydrator): array
 Speedy::findComplex(Hydrator $hydrator): array
-Speedy::getAllComplexes($countryId, Hydrator $hydrator): array
+Speedy::getAllComplexes($countryId, Hydrator $hydrator): object
 Speedy::findBlock(Hydrator $hydrator): array
 Speedy::getPoi($id, Hydrator $hydrator): array
 Speedy::findPoi(Hydrator $hydrator): array
-Speedy::getAllPoi($countryId, Hydrator $hydrator): array
-Speedy::getAllPostcodes($countryId, Hydrator $hydrator): array
+Speedy::getAllPoi($countryId, Hydrator $hydrator): object
+Speedy::getAllPostcodes($countryId, Hydrator $hydrator): object
 Speedy::getOffice($id, Hydrator $hydrator): array
 Speedy::findOffice(Hydrator $hydrator): array
 

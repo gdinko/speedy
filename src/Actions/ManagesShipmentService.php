@@ -9,7 +9,7 @@ trait ManagesShipmentService
     /**
      * createShipment
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function createShipment(Hydrator $hydrator): array
@@ -23,7 +23,7 @@ trait ManagesShipmentService
     /**
      * cancelShipment
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function cancelShipment(Hydrator $hydrator): array
@@ -37,7 +37,7 @@ trait ManagesShipmentService
     /**
      * addParcel
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function addParcel(Hydrator $hydrator): array
@@ -51,7 +51,7 @@ trait ManagesShipmentService
     /**
      * finalizePendingShipment
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function finalizePendingShipment(Hydrator $hydrator): array
@@ -65,7 +65,7 @@ trait ManagesShipmentService
     /**
      * shipmentInformation
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function shipmentInformation(Hydrator $hydrator): array
@@ -80,7 +80,7 @@ trait ManagesShipmentService
      * secondaryShipments
      *
      * @param  mixed $shipmentId
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function secondaryShipments($shipmentId, Hydrator $hydrator): array
@@ -94,7 +94,7 @@ trait ManagesShipmentService
     /**
      * updateShipment
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function updateShipment(Hydrator $hydrator): array
@@ -108,7 +108,7 @@ trait ManagesShipmentService
     /**
      * updateShipmentProperties
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function updateShipmentProperties(Hydrator $hydrator): array
@@ -122,7 +122,7 @@ trait ManagesShipmentService
     /**
      * findParcelsByReference
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function findParcelsByReference(Hydrator $hydrator): array
@@ -136,7 +136,7 @@ trait ManagesShipmentService
     /**
      * handoverToCourier
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function handoverToCourier(Hydrator $hydrator): array

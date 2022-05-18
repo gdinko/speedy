@@ -9,7 +9,7 @@ trait ManagesTrackAndTraceService
     /**
      * track
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function track(Hydrator $hydrator): array
@@ -23,7 +23,7 @@ trait ManagesTrackAndTraceService
     /**
      * bulkTrackingDataFiles
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function bulkTrackingDataFiles(Hydrator $hydrator): array

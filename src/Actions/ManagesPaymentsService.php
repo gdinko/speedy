@@ -9,7 +9,7 @@ trait ManagesPaymentsService
     /**
      * payments
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function payments(Hydrator $hydrator): array

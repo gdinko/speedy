@@ -16,12 +16,12 @@ class CsvResource
     ) {
         $csvLines = explode(PHP_EOL, $string);
 
-        if (! empty($csvLines)) {
+        if (!empty($csvLines[0])) {
             $i = 0;
             $header = [];
 
             foreach ($csvLines as $line) {
-                if (! empty($line)) {
+                if (!empty($line)) {
                     $csvRow = \str_getcsv($line, $separator, $enclosure, $escape);
 
                     if ($i == 0) {

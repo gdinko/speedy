@@ -9,7 +9,7 @@ trait ManagesPickupService
     /**
      * pickup
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function pickup(Hydrator $hydrator): array
@@ -23,7 +23,7 @@ trait ManagesPickupService
     /**
      * pickupTerms
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function pickupTerms(Hydrator $hydrator): array

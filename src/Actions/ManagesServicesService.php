@@ -9,7 +9,7 @@ trait ManagesServicesService
     /**
      * services
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function services(Hydrator $hydrator): array
@@ -23,7 +23,7 @@ trait ManagesServicesService
     /**
      * destinationServices
      *
-     * @param  mixed $request
+     * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
      * @return array
      */
     public function destinationServices(Hydrator $hydrator): array
