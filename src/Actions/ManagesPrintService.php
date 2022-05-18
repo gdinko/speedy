@@ -10,13 +10,14 @@ trait ManagesPrintService
      * print
      *
      * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
-     * @return array
+     * @return string
      */
-    public function print(Hydrator $hydrator): array
+    public function print(Hydrator $hydrator): string
     {
         return $this->post(
             'print',
             $hydrator->hydrate(),
+            true
         );
     }
 
@@ -52,13 +53,14 @@ trait ManagesPrintService
      * printVoucher
      *
      * @param  \Gdinko\Speedy\Interfaces\Hydrator $hydrator
-     * @return array
+     * @return string
      */
-    public function printVoucher(Hydrator $hydrator): array
+    public function printVoucher(Hydrator $hydrator): string
     {
         return $this->post(
             'print/voucher',
             $hydrator->hydrate(),
+            true
         );
     }
 }

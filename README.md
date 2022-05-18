@@ -64,10 +64,10 @@ Speedy::findParcelsByReference(Hydrator $hydrator): array
 Speedy::handoverToCourier(Hydrator $hydrator): array
 
 //Print Service
-Speedy::print(Hydrator $hydrator): array
+Speedy::print(Hydrator $hydrator): string
 Speedy::extendedPrint(Hydrator $hydrator): array
 Speedy::labelInfo(Hydrator $hydrator): array
-Speedy::printVoucher(Hydrator $hydrator): array
+Speedy::printVoucher(Hydrator $hydrator): string
 
 //Track And Trace Service
 Speedy::track(Hydrator $hydrator): array
