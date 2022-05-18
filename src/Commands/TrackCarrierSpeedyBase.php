@@ -6,9 +6,7 @@ use Gdinko\Speedy\Events\CarrierSpeedyTrackingEvent;
 use Gdinko\Speedy\Exceptions\SpeedyImportValidationException;
 use Gdinko\Speedy\Facades\Speedy;
 use Gdinko\Speedy\Hydrators\Request;
-use Gdinko\Speedy\Models\CarrierSpeedyPayment;
 use Gdinko\Speedy\Models\CarrierSpeedyTracking;
-use Gdinko\Speedy\Traits\ValidatesImport;
 use Illuminate\Console\Command;
 
 abstract class TrackCarrierSpeedyBase extends Command
@@ -51,7 +49,6 @@ abstract class TrackCarrierSpeedyBase extends Command
         $this->info('-> Carrier Speedy Parcel Tracking');
 
         try {
-
             $this->setUp();
 
             Speedy::setTimeout(
@@ -102,13 +99,12 @@ abstract class TrackCarrierSpeedyBase extends Command
 
         $bar->start();
 
-        if (!empty($this->parcels)) {
-
+        if (! empty($this->parcels)) {
             $trackingInfo = Speedy::track(
                 $this->prepareParcelRequest()
             );
 
-            if (!empty($trackingInfo)) {
+            if (! empty($trackingInfo)) {
                 $this->processTracking($trackingInfo, $bar);
             }
         }
@@ -116,13 +112,12 @@ abstract class TrackCarrierSpeedyBase extends Command
         $bar->finish();
     }
 
-        
     /**
      * prepareParcelRequest
      *
      * @return object
      */
-    protected function prepareParcelRequest():object
+    protected function prepareParcelRequest(): object
     {
         $data = [];
 
@@ -131,7 +126,7 @@ abstract class TrackCarrierSpeedyBase extends Command
         }
 
         return new Request([
-            'parcels' => $data
+            'parcels' => $data,
         ]);
     }
 
@@ -145,17 +140,16 @@ abstract class TrackCarrierSpeedyBase extends Command
     protected function processTracking(array $trackingInfo, $bar)
     {
         foreach ($trackingInfo as $tracking) {
-
             CarrierSpeedyTracking::updateOrCreate(
                 [
-                    'parcel_id' => $tracking['parcelId']
+                    'parcel_id' => $tracking['parcelId'],
                 ],
                 [
-                    'meta' => $tracking['operations']
+                    'meta' => $tracking['operations'],
                 ]
             );
 
-            if (!$this->muteEvents) {
+            if (! $this->muteEvents) {
                 CarrierSpeedyTrackingEvent::dispatch(
                     array_pop($tracking['operations'])
                 );
