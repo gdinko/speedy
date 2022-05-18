@@ -90,7 +90,7 @@ class SyncCarrierSpeedyCountries extends Command
 
         $bar->start();
 
-        if (!empty($countries)) {
+        if (! empty($countries)) {
             CarrierSpeedyCountry::truncate();
 
             foreach ($countries as $country) {

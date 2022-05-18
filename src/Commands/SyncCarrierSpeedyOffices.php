@@ -82,18 +82,17 @@ class SyncCarrierSpeedyOffices extends Command
      */
     protected function import()
     {
-
         $countryId = $this->argument('country_id');
 
         $offices = Speedy::findOffice(new Request([
-            'countryId' => $countryId
+            'countryId' => $countryId,
         ]));
 
         $bar = $this->output->createProgressBar(count($offices));
 
         $bar->start();
 
-        if (!empty($offices)) {
+        if (! empty($offices)) {
             CarrierSpeedyOffice::truncate();
 
             foreach ($offices as $office) {
