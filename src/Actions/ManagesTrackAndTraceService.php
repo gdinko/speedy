@@ -17,7 +17,7 @@ trait ManagesTrackAndTraceService
         return $this->post(
             'track',
             $hydrator->hydrate(),
-        );
+        )['parcels'] ?? [];
     }
 
     /**

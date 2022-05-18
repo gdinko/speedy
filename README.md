@@ -5,7 +5,6 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/gdinko/speedy/Check%20&%20fix%20styling?label=code%20style)](https://github.com/gdinko/speedy/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amaster)
 [![Total Downloads](https://img.shields.io/packagist/dt/gdinko/speedy.svg?style=flat-square)](https://packagist.org/packages/gdinko/speedy)
 
-
 [Speedy JSON API Documentation](https://services.speedy.bg/api/api_examples.html)
 
 ## Installation
@@ -40,6 +39,7 @@ SPEEDY_API_TIMEOUT= #default=5
 ## Usage
 
 Runtime Setup
+
 ```php
 Speedy::setAccount('user', 'pass');
 Speedy::setBaseUrl('endpoint');
@@ -47,6 +47,7 @@ Speedy::setTimeout(99);
 ```
 
 Methods
+
 ```php
 
 use Gdinko\Speedy\Facades\Speedy;
@@ -133,11 +134,23 @@ php artisan speedy:get-payments {--date_from=} {--date_to=} {--timeout=20 : Spee
 
 #get speedy api status
 php artisan speedy:api-status
+
+#sync countries with database
+php artisan speedy:sync-countries
+
+#sync offices with database
+php artisan speedy:sync-offices {country_id}
+
+#track parcels
+php artisan speedy:track
 ```
 
 Models
 
 ```php
+CarrierSpeedyCountry
+CarrierSpeedyOffice
+CarrierSpeedyTracking
 CarrierSpeedyPayment
 CarrierSpeedyApiStatus
 ```
@@ -145,12 +158,51 @@ CarrierSpeedyApiStatus
 Events
 
 ```php
+CarrierSpeedyTrackingEvent
 CarrierSpeedyPaymentEvent
+```
+
+## Parcels Tracking
+
+1. Subscribe to tracking event, you will recieve last tracking info, if tracking command is schduled
+
+```php
+Event::listen(function (CarrierSpeedyTrackingEvent $event) {
+    dd($event->tracking);
+});
+```
+
+2. Before use of tracking command you need to create your own command and define setUp method
+
+```bash
+php artisan make:command TrackCarrierSpeedy
+```
+
+3. In app/Console/Commands/TrackCarrierSpeedy define your logic for parcels to be tracked
+
+```php
+use Gdinko\Speedy\Commands\TrackCarrierSpeedyBase;
+
+class TrackCarrierSpeedySetup extends TrackCarrierSpeedyBase
+{
+    protected function setUp()
+    {
+        //define parcel selection logic here
+        // $this->parcels = [];
+    }
+}
+```
+
+4. Use the command
+
+```bash
+php artisan speedy:get-payments
 ```
 
 ## Examples
 
 Subscribe to payment event
+
 ```php
 Event::listen(function (CarrierSpeedyPaymentEvent $event) {
     dd($event->payment);
@@ -158,23 +210,26 @@ Event::listen(function (CarrierSpeedyPaymentEvent $event) {
 ```
 
 Check for payments from today
+
 ```bash
 php artisan speedy:get-payments
 ```
 
 Get All Countries
+
 ```php
 use Gdinko\Speedy\Facades\Speedy;
 use Gdinko\Speedy\Hydrators\Request;
 
 dd(
     Speedy::getAllCountries(
-        new Request([])
+        new Request()
     )->toArray()
 );
 ```
 
 Find Country
+
 ```php
 use Gdinko\Speedy\Facades\Speedy;
 use Gdinko\Speedy\Hydrators\Request;
