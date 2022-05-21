@@ -89,7 +89,6 @@ abstract class TrackCarrierSpeedyBase extends Command
      */
     abstract protected function setup();
 
-
     /**
      * clear
      *
@@ -98,7 +97,6 @@ abstract class TrackCarrierSpeedyBase extends Command
     protected function clear()
     {
         if ($days = $this->option('clear')) {
-
             $clearDate = Carbon::now()->subDays($days)->format('Y-m-d H:i:s');
 
             $this->info("-> Carrier Speedy Parcel Tracking : Clearing entries older than: {$clearDate}");
@@ -120,12 +118,12 @@ abstract class TrackCarrierSpeedyBase extends Command
 
         $bar->start();
 
-        if (!empty($this->parcels)) {
+        if (! empty($this->parcels)) {
             $trackingInfo = Speedy::track(
                 $this->prepareParcelRequest()
             );
 
-            if (!empty($trackingInfo)) {
+            if (! empty($trackingInfo)) {
                 $this->processTracking($trackingInfo, $bar);
             }
         }
@@ -170,7 +168,7 @@ abstract class TrackCarrierSpeedyBase extends Command
                 ]
             );
 
-            if (!$this->muteEvents) {
+            if (! $this->muteEvents) {
                 CarrierSpeedyTrackingEvent::dispatch(
                     array_pop($tracking['operations'])
                 );
