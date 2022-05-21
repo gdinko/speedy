@@ -9,6 +9,7 @@ use Gdinko\Speedy\Hydrators\Request;
 use Gdinko\Speedy\Models\CarrierSpeedyPayment;
 use Gdinko\Speedy\Traits\ValidatesImport;
 use Illuminate\Console\Command;
+use Illuminate\Support\Carbon;
 
 class GetCarrierSpeedyPayments extends Command
 {
@@ -19,7 +20,7 @@ class GetCarrierSpeedyPayments extends Command
      *
      * @var string
      */
-    protected $signature = 'speedy:get-payments {--date_from=} {--date_to=} {--timeout=20 : Speedy API Call timeout}';
+    protected $signature = 'speedy:get-payments {--date_from=} {--date_to=} {--clear= : Clear Database table from records older than X days} {--timeout=20 : Speedy API Call timeout}';
 
     /**
      * The console command description.
@@ -48,6 +49,8 @@ class GetCarrierSpeedyPayments extends Command
         $this->info('-> Carrier Speedy Import Payments');
 
         try {
+            $this->clear();
+
             Speedy::setTimeout(
                 $this->option('timeout')
             );
@@ -82,6 +85,23 @@ class GetCarrierSpeedyPayments extends Command
     }
 
     /**
+     * clear
+     *
+     * @return void
+     */
+    protected function clear()
+    {
+        if ($days = $this->option('clear')) {
+
+            $clearDate = Carbon::now()->subDays($days)->format('Y-m-d H:i:s');
+
+            $this->info("-> Carrier Speedy Import Payments : Clearing entries older than: {$clearDate}");
+
+            CarrierSpeedyPayment::where('created_at', '<=', $clearDate)->delete();
+        }
+    }
+
+    /**
      * import
      *
      * @param  mixed $dateFrom
@@ -100,7 +120,7 @@ class GetCarrierSpeedyPayments extends Command
 
         $bar->start();
 
-        if (! empty($payments['payouts'])) {
+        if (!empty($payments['payouts'])) {
             foreach ($payments['payouts'] as $payment) {
                 $validated = $this->validated($payment);
 

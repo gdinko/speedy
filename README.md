@@ -129,8 +129,8 @@ Speedy::payments(Hydrator $hydrator): array
 Commands
 
 ```bash
-#get today payments
-php artisan speedy:get-payments {--date_from=} {--date_to=} {--timeout=20 : Speedy API Call timeout}
+#get payments
+php artisan speedy:get-payments {--date_from=} {--date_to=} {--clear= : Clear Database table from records older than X days} {--timeout=20 : Speedy API Call timeout}
 
 #get speedy api status
 php artisan speedy:api-status
@@ -142,7 +142,7 @@ php artisan speedy:sync-countries
 php artisan speedy:sync-offices {country_id}
 
 #track parcels
-php artisan speedy:track
+php artisan speedy:track {--clear= : Clear Database table from records older than X days} {--timeout=20 : Speedy API Call timeout}
 ```
 
 Models

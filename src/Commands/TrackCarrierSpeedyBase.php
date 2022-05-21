@@ -8,6 +8,7 @@ use Gdinko\Speedy\Facades\Speedy;
 use Gdinko\Speedy\Hydrators\Request;
 use Gdinko\Speedy\Models\CarrierSpeedyTracking;
 use Illuminate\Console\Command;
+use Illuminate\Support\Carbon;
 
 abstract class TrackCarrierSpeedyBase extends Command
 {
@@ -20,7 +21,7 @@ abstract class TrackCarrierSpeedyBase extends Command
      *
      * @var string
      */
-    protected $signature = 'speedy:track {--timeout=20 : Speedy API Call timeout}';
+    protected $signature = 'speedy:track {--clear= : Clear Database table from records older than X days} {--timeout=20 : Speedy API Call timeout}';
 
     /**
      * The console command description.
@@ -50,6 +51,8 @@ abstract class TrackCarrierSpeedyBase extends Command
 
         try {
             $this->setup();
+
+            $this->clear();
 
             Speedy::setTimeout(
                 $this->option('timeout')
@@ -86,6 +89,24 @@ abstract class TrackCarrierSpeedyBase extends Command
      */
     abstract protected function setup();
 
+
+    /**
+     * clear
+     *
+     * @return void
+     */
+    protected function clear()
+    {
+        if ($days = $this->option('clear')) {
+
+            $clearDate = Carbon::now()->subDays($days)->format('Y-m-d H:i:s');
+
+            $this->info("-> Carrier Speedy Parcel Tracking : Clearing entries older than: {$clearDate}");
+
+            CarrierSpeedyTracking::where('created_at', '<=', $clearDate)->delete();
+        }
+    }
+
     /**
      * track
      *
@@ -99,12 +120,12 @@ abstract class TrackCarrierSpeedyBase extends Command
 
         $bar->start();
 
-        if (! empty($this->parcels)) {
+        if (!empty($this->parcels)) {
             $trackingInfo = Speedy::track(
                 $this->prepareParcelRequest()
             );
 
-            if (! empty($trackingInfo)) {
+            if (!empty($trackingInfo)) {
                 $this->processTracking($trackingInfo, $bar);
             }
         }
@@ -149,7 +170,7 @@ abstract class TrackCarrierSpeedyBase extends Command
                 ]
             );
 
-            if (! $this->muteEvents) {
+            if (!$this->muteEvents) {
                 CarrierSpeedyTrackingEvent::dispatch(
                     array_pop($tracking['operations'])
                 );
