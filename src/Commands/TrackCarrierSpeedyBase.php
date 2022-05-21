@@ -49,7 +49,7 @@ abstract class TrackCarrierSpeedyBase extends Command
         $this->info('-> Carrier Speedy Parcel Tracking');
 
         try {
-            $this->setUp();
+            $this->setup();
 
             Speedy::setTimeout(
                 $this->option('timeout')
@@ -80,11 +80,11 @@ abstract class TrackCarrierSpeedyBase extends Command
     }
 
     /**
-     * setUp
+     * setup
      *
      * @return void
      */
-    abstract protected function setUp();
+    abstract protected function setup();
 
     /**
      * track

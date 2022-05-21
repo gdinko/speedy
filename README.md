@@ -185,7 +185,7 @@ use Gdinko\Speedy\Commands\TrackCarrierSpeedyBase;
 
 class TrackCarrierSpeedySetup extends TrackCarrierSpeedyBase
 {
-    protected function setUp()
+    protected function setup()
     {
         //define parcel selection logic here
         // $this->parcels = [];
@@ -196,7 +196,7 @@ class TrackCarrierSpeedySetup extends TrackCarrierSpeedyBase
 4. Use the command
 
 ```bash
-php artisan speedy:get-payments
+php artisan speedy:track
 ```
 
 ## Examples
