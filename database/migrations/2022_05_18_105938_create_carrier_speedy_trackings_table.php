@@ -16,10 +16,14 @@ class CreateCarrierSpeedyTrackingsTable extends Migration
         Schema::create('carrier_speedy_trackings', function (Blueprint $table) {
             $table->id();
 
+            $table->string('carrier_signature')->index();
+            $table->string('carrier_account')->index();
             $table->bigInteger('parcel_id')->unique()->index();
             $table->json('meta')->nullable();
 
             $table->timestamps();
+
+            $table->index('created_at');
         });
     }
 

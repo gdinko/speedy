@@ -20,7 +20,19 @@ class SpeedyServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__ . '/../config/speedy.php' => config_path('speedy.php'),
-            ], 'config');
+            ], 'speedy-config');
+
+            $this->publishes([
+                __DIR__ . '/../database/migrations/' => database_path('migrations'),
+            ], 'speedy-migrations');
+
+            $this->publishes([
+                __DIR__ . '/Models/' => app_path('Models'),
+            ], 'speedy-models');
+
+            $this->publishes([
+                __DIR__ . '/Commands/' => app_path('Console/Commands'),
+            ], 'speedy-commands');
 
             // Registering package commands.
             $this->commands([

@@ -6,6 +6,7 @@ use Gdinko\Speedy\Facades\Speedy;
 use Gdinko\Speedy\Hydrators\Request;
 use Gdinko\Speedy\Models\CarrierSpeedyApiStatus;
 use Illuminate\Console\Command;
+use Illuminate\Support\Carbon;
 
 class GetCarrierSpeedyApiStatus extends Command
 {
@@ -17,7 +18,9 @@ class GetCarrierSpeedyApiStatus extends Command
      *
      * @var string
      */
-    protected $signature = 'speedy:api-status {--timeout=5 : Speedy API Call timeout}';
+    protected $signature = 'speedy:api-status
+                            {--clear= : Clear Database table from records older than X days}
+                            {--timeout=5 : Speedy API Call timeout}';
 
     /**
      * The console command description.
@@ -46,13 +49,15 @@ class GetCarrierSpeedyApiStatus extends Command
         $this->info('-> Carrier Speedy Api Status');
 
         try {
+            $this->clear();
+
             Speedy::setTimeout(
                 $this->option('timeout')
             );
 
             $response = Speedy::getOwnClientId(new Request([]));
 
-            if (! empty($response['clientId'])) {
+            if (!empty($response['clientId'])) {
                 CarrierSpeedyApiStatus::create([
                     'code' => self::API_STATUS_OK,
                 ]);
@@ -72,5 +77,21 @@ class GetCarrierSpeedyApiStatus extends Command
         }
 
         return 0;
+    }
+
+    /**
+     * clear
+     *
+     * @return void
+     */
+    protected function clear()
+    {
+        if ($days = $this->option('clear')) {
+            $clearDate = Carbon::now()->subDays($days)->format('Y-m-d H:i:s');
+
+            $this->info("-> Carrier Speedy Api Status : Clearing entries older than: {$clearDate}");
+
+            CarrierSpeedyApiStatus::where('created_at', '<=', $clearDate)->delete();
+        }
     }
 }

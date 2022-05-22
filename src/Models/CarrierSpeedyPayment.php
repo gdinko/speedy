@@ -58,6 +58,8 @@ class CarrierSpeedyPayment extends Model
     use HasFactory;
 
     protected $fillable = [
+        'carrier_signature',
+        'carrier_account',
         'doc_id',
         'shipment_id',
         'order',

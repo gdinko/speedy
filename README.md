@@ -24,7 +24,25 @@ php artisan migrate
 If you need to export configuration file:
 
 ```bash
-php artisan vendor:publish --provider="gdinko\speedy\SpeedyServiceProvider" --tag=config
+php artisan vendor:publish --tag=speedy-config
+```
+
+If you need to export migrations:
+
+```bash
+php artisan vendor:publish --tag=speedy-migrations
+```
+
+If you need to export models:
+
+```bash
+php artisan vendor:publish --tag=speedy-models
+```
+
+If you need to export commands:
+
+```bash
+php artisan vendor:publish --tag=speedy-commands
 ```
 
 ## Configuration
@@ -44,6 +62,25 @@ Runtime Setup
 Speedy::setAccount('user', 'pass');
 Speedy::setBaseUrl('endpoint');
 Speedy::setTimeout(99);
+Speedy::addAccountToStore('AccountUser', 'AccountPass');
+Speedy::getAccountFromStore('AccountUser');
+Speedy::setAccountFromStore('AccountUser');
+```
+
+Multiple Account Support In AppServiceProvider add accounts in boot method
+```php
+public function boot()
+{
+    Speedy::addAccountToStore(
+        'AccountUser',
+        'AccountPass'
+    );
+
+    Speedy::addAccountToStore(
+        'AccountUser_XXX',
+        'AccountPass_XXX'
+    );
+}
 ```
 
 Methods
@@ -129,20 +166,20 @@ Speedy::payments(Hydrator $hydrator): array
 Commands
 
 ```bash
-#get payments
-php artisan speedy:get-payments {--date_from=} {--date_to=} {--clear= : Clear Database table from records older than X days} {--timeout=20 : Speedy API Call timeout}
+#get payments (use -h to view options)
+php artisan speedy:get-payments
 
-#get speedy api status
+#get speedy api status (use -h to view options)
 php artisan speedy:api-status
 
-#sync countries with database
+#sync countries with database  (use -h to view options)
 php artisan speedy:sync-countries
 
-#sync offices with database
-php artisan speedy:sync-offices {country_id}
+#sync offices with database  (use -h to view options)
+php artisan speedy:sync-offices
 
-#track parcels
-php artisan speedy:track {--clear= : Clear Database table from records older than X days} {--timeout=20 : Speedy API Call timeout}
+#track parcels (use -h to view options)
+php artisan speedy:track
 ```
 
 Models
@@ -168,6 +205,7 @@ CarrierSpeedyPaymentEvent
 
 ```php
 Event::listen(function (CarrierSpeedyTrackingEvent $event) {
+    echo $event->account;
     dd($event->tracking);
 });
 ```
@@ -205,6 +243,7 @@ Subscribe to payment event
 
 ```php
 Event::listen(function (CarrierSpeedyPaymentEvent $event) {
+    echo $event->account;
     dd($event->payment);
 });
 ```

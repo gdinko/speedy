@@ -16,6 +16,8 @@ class CreateCarrierSpeedyPaymentsTable extends Migration
         Schema::create('carrier_speedy_payments', function (Blueprint $table) {
             $table->id();
 
+            $table->string('carrier_signature')->index();
+            $table->string('carrier_account')->index();
             $table->bigInteger('doc_id')->index();
             $table->string('shipment_id')->index();
             $table->bigInteger('order')->unique()->index();
@@ -25,9 +27,9 @@ class CreateCarrierSpeedyPaymentsTable extends Migration
             $table->string('payee');
             $table->char('currency', 3);
             $table->decimal('amount');
-            $table->date('pickup_date');
-            $table->date('primary_shipment_pickup_date');
-            $table->date('delivery_date');
+            $table->date('pickup_date')->nullable();
+            $table->date('primary_shipment_pickup_date')->nullable();
+            $table->date('delivery_date')->nullable();
             $table->string('sender');
             $table->string('recipient');
             $table->string('note')->nullable();
@@ -35,6 +37,8 @@ class CreateCarrierSpeedyPaymentsTable extends Migration
             $table->string('ref2')->nullable();
 
             $table->timestamps();
+
+            $table->index('created_at');
         });
     }
 

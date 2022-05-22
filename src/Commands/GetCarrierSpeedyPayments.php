@@ -20,7 +20,11 @@ class GetCarrierSpeedyPayments extends Command
      *
      * @var string
      */
-    protected $signature = 'speedy:get-payments {--date_from=} {--date_to=} {--clear= : Clear Database table from records older than X days} {--timeout=20 : Speedy API Call timeout}';
+    protected $signature = 'speedy:get-payments
+                            {--account= : Set Speedy API Account}
+                            {--date_from=}
+                            {--date_to=}
+                            {--clear= : Clear Database table from records older than X days} {--timeout=20 : Speedy API Call timeout}';
 
     /**
      * The console command description.
@@ -49,6 +53,8 @@ class GetCarrierSpeedyPayments extends Command
         $this->info('-> Carrier Speedy Import Payments');
 
         try {
+            $this->setAccount();
+
             $this->clear();
 
             Speedy::setTimeout(
@@ -82,6 +88,20 @@ class GetCarrierSpeedyPayments extends Command
         }
 
         return 0;
+    }
+
+    /**
+     * setAccount
+     *
+     * @return void
+     */
+    protected function setAccount()
+    {
+        if ($this->option('account')) {
+            Speedy::setAccountFromStore(
+                $this->option('account')
+            );
+        }
     }
 
     /**
@@ -119,12 +139,14 @@ class GetCarrierSpeedyPayments extends Command
 
         $bar->start();
 
-        if (! empty($payments['payouts'])) {
+        if (!empty($payments['payouts'])) {
             foreach ($payments['payouts'] as $payment) {
                 $validated = $this->validated($payment);
 
                 foreach ($validated['details'] as $paymentDetail) {
                     $carrierSpeedyPayment = CarrierSpeedyPayment::create([
+                        'carrier_signature' => Speedy::getSignature(),
+                        'carrier_account' => Speedy::getUserName(),
                         'doc_id' => $validated['docId'],
                         'shipment_id' => $paymentDetail['shipmentId'],
                         'order' => $paymentDetail['order'],
@@ -134,9 +156,9 @@ class GetCarrierSpeedyPayments extends Command
                         'payee' => $validated['payee'],
                         'currency' => $paymentDetail['currency'],
                         'amount' => $paymentDetail['amount'],
-                        'pickup_date' => $paymentDetail['pickupDate'],
-                        'primary_shipment_pickup_date' => $paymentDetail['primaryShipmentPickupDate'],
-                        'delivery_date' => $paymentDetail['deliveryDate'],
+                        'pickup_date' => $paymentDetail['pickupDate'] ?? null,
+                        'primary_shipment_pickup_date' => $paymentDetail['primaryShipmentPickupDate'] ?? null,
+                        'delivery_date' => $paymentDetail['deliveryDate'] ?? null,
                         'sender' => $paymentDetail['sender'],
                         'recipient' => $paymentDetail['recipient'],
                         'note' => $paymentDetail['note'] ?? null,
@@ -144,7 +166,10 @@ class GetCarrierSpeedyPayments extends Command
                         'ref2' => $paymentDetail['ref2'] ?? null,
                     ]);
 
-                    CarrierSpeedyPaymentEvent::dispatch($carrierSpeedyPayment);
+                    CarrierSpeedyPaymentEvent::dispatch(
+                        $carrierSpeedyPayment,
+                        Speedy::getUserName()
+                    );
                 }
 
                 $bar->advance();
@@ -172,9 +197,9 @@ class GetCarrierSpeedyPayments extends Command
             'details.*.order' => 'integer|required',
             'details.*.currency' => 'string|required',
             'details.*.amount' => 'numeric|required',
-            'details.*.pickupDate' => 'date|',
-            'details.*.primaryShipmentPickupDate' => 'date|',
-            'details.*.deliveryDate' => 'date|',
+            'details.*.pickupDate' => 'date',
+            'details.*.primaryShipmentPickupDate' => 'date',
+            'details.*.deliveryDate' => 'date',
             'details.*.sender' => 'string|required',
             'details.*.recipient' => 'string|required',
             'details.*.note' => 'string|sometimes',

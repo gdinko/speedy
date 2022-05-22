@@ -16,14 +16,18 @@ class CarrierSpeedyPaymentEvent
 
     public $payment;
 
+    public $account;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(CarrierSpeedyPayment $payment)
+    public function __construct(CarrierSpeedyPayment $payment, string $account)
     {
         $this->payment = $payment;
+
+        $this->account = $account;
     }
 
     /**

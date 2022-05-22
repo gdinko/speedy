@@ -2,6 +2,9 @@
 
 namespace Gdinko\Speedy;
 
+use Gdinko\Speedy\Exceptions\SpeedyException;
+use Illuminate\Support\Str;
+
 class Speedy
 {
     use MakesHttpRequests;
@@ -16,6 +19,8 @@ class Speedy
     use Actions\ManagesServicesService;
     use Actions\ManagesPaymentsService;
 
+    public const SIGNATURE = 'CARRIER_SPEEDY';
+
     /**
      * Speedy API username
      */
@@ -25,6 +30,13 @@ class Speedy
      * Speedy API password
      */
     protected $pass;
+
+    /**
+     * Speedy API Account Store
+     *
+     * @var array
+     */
+    protected $accountStore = [];
 
     /**
      * Speedy API Base Url
@@ -47,18 +59,35 @@ class Speedy
         $this->configBaseUrl();
     }
 
+    /**
+     * configBaseUrl
+     *
+     * @return void
+     */
     public function configBaseUrl()
     {
         $this->baseUrl = config('speedy.base-url');
     }
 
-    public function setAccount($user, $pass)
+    /**
+     * setAccount
+     *
+     * @param  string $user
+     * @param  string $pass
+     * @return void
+     */
+    public function setAccount(string $user, string $pass)
     {
         $this->user = $user;
         $this->pass = $pass;
     }
 
-    public function getAccount()
+    /**
+     * getAccount
+     *
+     * @return array
+     */
+    public function getAccount(): array
     {
         return [
             'user' => $this->user,
@@ -66,33 +95,123 @@ class Speedy
         ];
     }
 
-    public function getUserName()
+    /**
+     * getUserName
+     *
+     * @return string
+     */
+    public function getUserName(): string
     {
         return $this->user;
     }
 
-    public function getPassword()
+    /**
+     * getPassword
+     *
+     * @return string
+     */
+    public function getPassword(): string
     {
         return $this->pass;
     }
 
+    /**
+     * getSignature
+     *
+     * @return string
+     */
+    public function getSignature(): string
+    {
+        return self::SIGNATURE;
+    }
+
+    /**
+     * setBaseUrl
+     *
+     * @param  mixed $baseUrl
+     * @return void
+     */
     public function setBaseUrl(string $baseUrl)
     {
         $this->baseUrl = rtrim($baseUrl, '/');
     }
 
-    public function getBaseUrl()
+    /**
+     * getBaseUrl
+     *
+     * @return string
+     */
+    public function getBaseUrl(): string
     {
         return $this->baseUrl;
     }
 
+    /**
+     * setTimeout
+     *
+     * @param  integer $timeout
+     * @return void
+     */
     public function setTimeout(int $timeout)
     {
         $this->timeout = $timeout;
     }
 
-    public function getTimeout()
+    /**
+     * getTimeout
+     *
+     * @return int
+     */
+    public function getTimeout(): int
     {
         return $this->timeout;
+    }
+
+    /**
+     * addAccountToStore
+     *
+     * @param  string $user
+     * @param  string $pass
+     * @return void
+     */
+    public function addAccountToStore(string $user, string $pass)
+    {
+        $this->accountStore[Str::slug($user)] = [
+            'user' => $user,
+            'pass' => $pass,
+        ];
+    }
+
+    /**
+     * getAccountFromStore
+     *
+     * @param  string $user
+     * @return array
+     */
+    public function getAccountFromStore(string $user): array
+    {
+        $key = Str::slug($user);
+
+        if (isset($this->accountStore[$key])) {
+            return $this->accountStore[$key];
+        }
+
+        throw new SpeedyException('Missing Account in Account Store');
+    }
+
+    /**
+     * setAccountFromStore
+     *
+     * @param  string $account
+     * @return void
+     */
+    public function setAccountFromStore(string $account)
+    {
+        $accountFromStore = $this->getAccountFromStore($account);
+
+        $this->setAccount(
+            $accountFromStore['user'],
+            $accountFromStore['pass']
+        );
     }
 }

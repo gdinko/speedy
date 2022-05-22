@@ -28,6 +28,8 @@ class CarrierSpeedyTracking extends Model
     use HasFactory;
 
     protected $fillable = [
+        'carrier_signature',
+        'carrier_account',
         'parcel_id',
         'meta',
     ];

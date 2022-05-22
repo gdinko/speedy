@@ -15,14 +15,18 @@ class CarrierSpeedyTrackingEvent
 
     public $tracking;
 
+    public $account;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(array $tracking)
+    public function __construct(array $tracking, string $account)
     {
         $this->tracking = $tracking;
+
+        $this->account = $account;
     }
 
     /**

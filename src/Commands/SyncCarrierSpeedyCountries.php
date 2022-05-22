@@ -18,7 +18,8 @@ class SyncCarrierSpeedyCountries extends Command
      *
      * @var string
      */
-    protected $signature = 'speedy:sync-countries {--timeout=20 : Speedy API Call timeout}';
+    protected $signature = 'speedy:sync-countries
+                            {--timeout=20 : Speedy API Call timeout}';
 
     /**
      * The console command description.

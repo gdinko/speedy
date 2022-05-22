@@ -21,7 +21,10 @@ abstract class TrackCarrierSpeedyBase extends Command
      *
      * @var string
      */
-    protected $signature = 'speedy:track {--clear= : Clear Database table from records older than X days} {--timeout=20 : Speedy API Call timeout}';
+    protected $signature = 'speedy:track
+                            {--account= : Set Speedy API Account}
+                            {--clear= : Clear Database table from records older than X days}
+                            {--timeout=20 : Speedy API Call timeout}';
 
     /**
      * The console command description.
@@ -50,6 +53,8 @@ abstract class TrackCarrierSpeedyBase extends Command
         $this->info('-> Carrier Speedy Parcel Tracking');
 
         try {
+            $this->setAccount();
+
             $this->setup();
 
             $this->clear();
@@ -80,6 +85,20 @@ abstract class TrackCarrierSpeedyBase extends Command
         }
 
         return 0;
+    }
+
+    /**
+     * setAccount
+     *
+     * @return void
+     */
+    protected function setAccount()
+    {
+        if ($this->option('account')) {
+            Speedy::setAccountFromStore(
+                $this->option('account')
+            );
+        }
     }
 
     /**
@@ -118,12 +137,12 @@ abstract class TrackCarrierSpeedyBase extends Command
 
         $bar->start();
 
-        if (! empty($this->parcels)) {
+        if (!empty($this->parcels)) {
             $trackingInfo = Speedy::track(
                 $this->prepareParcelRequest()
             );
 
-            if (! empty($trackingInfo)) {
+            if (!empty($trackingInfo)) {
                 $this->processTracking($trackingInfo, $bar);
             }
         }
@@ -164,13 +183,16 @@ abstract class TrackCarrierSpeedyBase extends Command
                     'parcel_id' => $tracking['parcelId'],
                 ],
                 [
+                    'carrier_signature' => Speedy::getSignature(),
+                    'carrier_account' => Speedy::getUserName(),
                     'meta' => $tracking['operations'],
                 ]
             );
 
-            if (! $this->muteEvents) {
+            if (!$this->muteEvents) {
                 CarrierSpeedyTrackingEvent::dispatch(
-                    array_pop($tracking['operations'])
+                    array_pop($tracking['operations']),
+                    Speedy::getUserName()
                 );
             }
 

@@ -18,7 +18,9 @@ class SyncCarrierSpeedyOffices extends Command
      *
      * @var string
      */
-    protected $signature = 'speedy:sync-offices {country_id} {--timeout=20 : Speedy API Call timeout}';
+    protected $signature = 'speedy:sync-offices
+                            {country_id}
+                            {--timeout=20 : Speedy API Call timeout}';
 
     /**
      * The console command description.
