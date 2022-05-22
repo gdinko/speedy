@@ -52,6 +52,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CarrierSpeedyPayment whereShipmentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CarrierSpeedyPayment whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $carrier_signature
+ * @property string $carrier_account
+ * @method static \Illuminate\Database\Eloquent\Builder|CarrierSpeedyPayment whereCarrierAccount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CarrierSpeedyPayment whereCarrierSignature($value)
  */
 class CarrierSpeedyPayment extends Model
 {

@@ -22,6 +22,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CarrierSpeedyTracking whereParcelId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CarrierSpeedyTracking whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $carrier_signature
+ * @property string $carrier_account
+ * @method static \Illuminate\Database\Eloquent\Builder|CarrierSpeedyTracking whereCarrierAccount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CarrierSpeedyTracking whereCarrierSignature($value)
  */
 class CarrierSpeedyTracking extends Model
 {
