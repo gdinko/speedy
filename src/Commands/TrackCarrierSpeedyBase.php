@@ -137,12 +137,12 @@ abstract class TrackCarrierSpeedyBase extends Command
 
         $bar->start();
 
-        if (!empty($this->parcels)) {
+        if (! empty($this->parcels)) {
             $trackingInfo = Speedy::track(
                 $this->prepareParcelRequest()
             );
 
-            if (!empty($trackingInfo)) {
+            if (! empty($trackingInfo)) {
                 $this->processTracking($trackingInfo, $bar);
             }
         }
@@ -189,7 +189,7 @@ abstract class TrackCarrierSpeedyBase extends Command
                 ]
             );
 
-            if (!$this->muteEvents) {
+            if (! $this->muteEvents) {
                 CarrierSpeedyTrackingEvent::dispatch(
                     array_pop($tracking['operations']),
                     Speedy::getUserName()

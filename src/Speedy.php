@@ -149,7 +149,7 @@ class Speedy
     /**
      * setTimeout
      *
-     * @param  integer $timeout
+     * @param  int $timeout
      * @return void
      */
     public function setTimeout(int $timeout)

@@ -139,7 +139,7 @@ class GetCarrierSpeedyPayments extends Command
 
         $bar->start();
 
-        if (!empty($payments['payouts'])) {
+        if (! empty($payments['payouts'])) {
             foreach ($payments['payouts'] as $payment) {
                 $validated = $this->validated($payment);
 
