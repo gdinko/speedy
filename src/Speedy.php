@@ -128,7 +128,7 @@ class Speedy
     /**
      * setBaseUrl
      *
-     * @param  mixed $baseUrl
+     * @param  string $baseUrl
      * @return void
      */
     public function setBaseUrl(string $baseUrl)
