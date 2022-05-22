@@ -62,6 +62,7 @@ Runtime Setup
 Speedy::setAccount('user', 'pass');
 Speedy::setBaseUrl('endpoint');
 Speedy::setTimeout(99);
+
 Speedy::addAccountToStore('AccountUser', 'AccountPass');
 Speedy::getAccountFromStore('AccountUser');
 Speedy::setAccountFromStore('AccountUser');
