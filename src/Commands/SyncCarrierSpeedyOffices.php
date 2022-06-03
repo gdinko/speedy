@@ -95,7 +95,7 @@ class SyncCarrierSpeedyOffices extends Command
         $bar->start();
 
         if (! empty($offices)) {
-            CarrierSpeedyOffice::truncate();
+            CarrierSpeedyOffice::where('speedy_country_id', $countryId)->delete();
 
             foreach ($offices as $office) {
                 $validated = $this->validated($office);
@@ -113,21 +113,21 @@ class SyncCarrierSpeedyOffices extends Command
                     'working_time_schedule' => $validated['workingTimeSchedule'],
                     'cargo_types_allowed' => $validated['cargoTypesAllowed'],
                     'meta' => [
-                        'workingTimeFrom' => $validated['workingTimeFrom'],
-                        'workingTimeTo' => $validated['workingTimeTo'],
-                        'workingTimeHalfFrom' => $validated['workingTimeHalfFrom'],
-                        'workingTimeHalfTo' => $validated['workingTimeHalfTo'],
-                        'workingTimeDayOffFrom' => $validated['workingTimeDayOffFrom'],
-                        'workingTimeDayOffTo' => $validated['workingTimeDayOffTo'],
-                        'sameDayDepartureCutoff' => $validated['sameDayDepartureCutoff'],
-                        'sameDayDepartureCutoffHalf' => $validated['sameDayDepartureCutoffHalf'],
-                        'sameDayDepartureCutoffDayOff' => $validated['sameDayDepartureCutoffDayOff'],
-                        'maxParcelWeight' => $validated['maxParcelWeight'],
-                        'pickUpAllowed' => $validated['pickUpAllowed'],
-                        'dropOffAllowed' => $validated['dropOffAllowed'],
-                        'cardPaymentAllowed' => $validated['cardPaymentAllowed'],
-                        'palletOffice' => $validated['palletOffice'],
-                        'cashPaymentAllowed' => $validated['cashPaymentAllowed'],
+                        'workingTimeFrom' => $validated['workingTimeFrom'] ?? null,
+                        'workingTimeTo' => $validated['workingTimeTo'] ?? null,
+                        'workingTimeHalfFrom' => $validated['workingTimeHalfFrom'] ?? null,
+                        'workingTimeHalfTo' => $validated['workingTimeHalfTo'] ?? null,
+                        'workingTimeDayOffFrom' => $validated['workingTimeDayOffFrom'] ?? null,
+                        'workingTimeDayOffTo' => $validated['workingTimeDayOffTo'] ?? null,
+                        'sameDayDepartureCutoff' => $validated['sameDayDepartureCutoff'] ?? null,
+                        'sameDayDepartureCutoffHalf' => $validated['sameDayDepartureCutoffHalf'] ?? null,
+                        'sameDayDepartureCutoffDayOff' => $validated['sameDayDepartureCutoffDayOff'] ?? null,
+                        'maxParcelWeight' => $validated['maxParcelWeight'] ?? null,
+                        'pickUpAllowed' => $validated['pickUpAllowed'] ?? null,
+                        'dropOffAllowed' => $validated['dropOffAllowed'] ?? null,
+                        'cardPaymentAllowed' => $validated['cardPaymentAllowed'] ?? null,
+                        'palletOffice' => $validated['palletOffice'] ?? null,
+                        'cashPaymentAllowed' => $validated['cashPaymentAllowed'] ?? null,
                     ],
                 ]);
 
