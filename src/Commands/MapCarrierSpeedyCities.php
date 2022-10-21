@@ -7,8 +7,8 @@ use Gdinko\Speedy\Facades\Speedy;
 use Gdinko\Speedy\Hydrators\Request;
 use Gdinko\Speedy\Models\CarrierCityMap;
 use Gdinko\Speedy\Models\CarrierSpeedyCountry;
-use Illuminate\Console\Command;
 use Gdinko\Speedy\Traits\ValidatesImport;
+use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 use Ramsey\Uuid\Uuid;
 
@@ -103,8 +103,7 @@ class MapCarrierSpeedyCities extends Command
 
         $bar->start();
 
-        if (!empty($cities)) {
-
+        if (! empty($cities)) {
             CarrierCityMap::where(
                 'carrier_signature',
                 Speedy::getSignature()

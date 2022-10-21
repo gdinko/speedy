@@ -2,13 +2,13 @@
 
 namespace Gdinko\Speedy\Commands;
 
-use Gdinko\Speedy\Models\CarrierSpeedyCity;
 use Gdinko\Speedy\Exceptions\SpeedyImportValidationException;
 use Gdinko\Speedy\Facades\Speedy;
-use Illuminate\Console\Command;
 use Gdinko\Speedy\Hydrators\Request;
+use Gdinko\Speedy\Models\CarrierSpeedyCity;
 use Gdinko\Speedy\Models\CarrierSpeedyCountry;
 use Gdinko\Speedy\Traits\ValidatesImport;
+use Illuminate\Console\Command;
 
 class SyncCarrierSpeedyCities extends Command
 {
@@ -101,7 +101,7 @@ class SyncCarrierSpeedyCities extends Command
 
         $bar->start();
 
-        if (!empty($cities)) {
+        if (! empty($cities)) {
             CarrierSpeedyCity::truncate();
 
             foreach ($cities as $city) {
