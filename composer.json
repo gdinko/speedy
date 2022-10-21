@@ -57,7 +57,7 @@
                 "Gdinko\\Speedy\\SpeedyServiceProvider"
             ],
             "aliases": {
-                "Speedy": "Gdinko\\Speedy\\SpeedyFacade"
+                "Speedy": "Gdinko\\Speedy\\Facades\\Speedy"
             }
         }
     },
