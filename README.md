@@ -176,6 +176,12 @@ php artisan speedy:api-status
 #sync countries with database  (use -h to view options)
 php artisan speedy:sync-countries
 
+#sync cities with database  (use -h to view options)
+php artisan speedy:sync-cities
+
+#create cities map with other carriers in database  (use -h to view options)
+php artisan speedy:map-cities
+
 #sync offices with database  (use -h to view options)
 php artisan speedy:sync-offices
 
@@ -187,10 +193,12 @@ Models
 
 ```php
 CarrierSpeedyCountry
+CarrierSpeedyCity
 CarrierSpeedyOffice
 CarrierSpeedyTracking
 CarrierSpeedyPayment
 CarrierSpeedyApiStatus
+CarrierCityMap
 ```
 
 Events
