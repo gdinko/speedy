@@ -104,7 +104,7 @@ class MapCarrierSpeedyCities extends Command
 
         $bar->start();
 
-        if (!empty($cities)) {
+        if (! empty($cities)) {
             CarrierCityMap::where(
                 'carrier_signature',
                 Speedy::getSignature()
@@ -149,7 +149,7 @@ class MapCarrierSpeedyCities extends Command
                     'site_id',
                     $validated['id']
                 )->update([
-                    'city_uuid' => $data['uuid']
+                    'city_uuid' => $data['uuid'],
                 ]);
 
                 $bar->advance();
