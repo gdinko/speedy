@@ -7,6 +7,7 @@ use Gdinko\Speedy\Facades\Speedy;
 use Gdinko\Speedy\Hydrators\Request;
 use Gdinko\Speedy\Models\CarrierCityMap;
 use Gdinko\Speedy\Models\CarrierSpeedyCountry;
+use Gdinko\Speedy\Models\CarrierSpeedyOffice;
 use Gdinko\Speedy\Traits\ValidatesImport;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
@@ -103,7 +104,7 @@ class MapCarrierSpeedyCities extends Command
 
         $bar->start();
 
-        if (! empty($cities)) {
+        if (!empty($cities)) {
             CarrierCityMap::where(
                 'carrier_signature',
                 Speedy::getSignature()
@@ -142,6 +143,14 @@ class MapCarrierSpeedyCities extends Command
                 CarrierCityMap::create(
                     $data
                 );
+
+                //set city_uuid to all offices with this site_id
+                CarrierSpeedyOffice::where(
+                    'site_id',
+                    $validated['id']
+                )->update([
+                    'city_uuid' => $data['uuid']
+                ]);
 
                 $bar->advance();
             }

@@ -107,6 +107,7 @@ class SyncCarrierSpeedyOffices extends Command
                     'name_en' => $validated['nameEn'],
                     'site_id' => $validated['siteId'],
                     'type' => $validated['type'],
+                    'is_robot' => $validated['type'] == 'APT' ? 1 : 0,
                     'nearby_office_id' => $validated['nearbyOfficeId'],
                     'address' => $validated['address'],
                     'max_parcel_dimensions' => $validated['maxParcelDimensions'],

@@ -42,6 +42,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|CarrierSpeedyOffice whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CarrierSpeedyOffice whereWorkingTimeSchedule($value)
  * @mixin \Eloquent
+ * @property string|null $city_uuid
+ * @property int|null $is_robot
+ * @method static \Illuminate\Database\Eloquent\Builder|CarrierSpeedyOffice whereCityUuid($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CarrierSpeedyOffice whereIsRobot($value)
  */
 class CarrierSpeedyOffice extends Model
 {
@@ -53,7 +57,9 @@ class CarrierSpeedyOffice extends Model
         'name',
         'name_en',
         'site_id',
+        'city_uuid',
         'type',
+        'is_robot',
         'nearby_office_id',
         'address',
         'max_parcel_dimensions',
