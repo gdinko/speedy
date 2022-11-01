@@ -46,6 +46,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $is_robot
  * @method static \Illuminate\Database\Eloquent\Builder|CarrierSpeedyOffice whereCityUuid($value)
  * @method static \Illuminate\Database\Eloquent\Builder|CarrierSpeedyOffice whereIsRobot($value)
+ * @property-read \Gdinko\Speedy\Models\CarrierSpeedyCity|null $city
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Gdinko\Speedy\Models\CarrierCityMap[] $cityMap
+ * @property-read int|null $city_map_count
  */
 class CarrierSpeedyOffice extends Model
 {
@@ -75,4 +78,22 @@ class CarrierSpeedyOffice extends Model
         'cargo_types_allowed' => 'array',
         'meta' => 'array',
     ];
+
+    public function city()
+    {
+        return $this->belongsTo(
+            CarrierSpeedyCity::class,
+            'site_id',
+            'speedy_city_id'
+        );
+    }
+
+    public function cityMap()
+    {
+        return $this->hasMany(
+            CarrierCityMap::class,
+            'uuid',
+            'city_uuid'
+        );
+    }
 }
