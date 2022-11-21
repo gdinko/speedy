@@ -94,8 +94,7 @@ class SyncCarrierSpeedyOffices extends Command
 
         $bar->start();
 
-        if (!empty($offices)) {
-
+        if (! empty($offices)) {
             CarrierSpeedyOffice::where(
                 'speedy_country_id',
                 $countryId
