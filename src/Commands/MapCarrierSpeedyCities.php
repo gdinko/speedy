@@ -100,15 +100,24 @@ class MapCarrierSpeedyCities extends Command
             new Request([])
         )->toArray();
 
+        if (!CarrierSpeedyOffice::where('speedy_country_id', $countryId)->count()) {
+
+            $this->newLine();
+            $this->warn('[WARN] Import speedy offices first to map office city ...');
+            $this->newLine();
+        }
+
         $bar = $this->output->createProgressBar(count($cities));
 
         $bar->start();
 
-        if (! empty($cities)) {
+        if (!empty($cities)) {
             CarrierCityMap::where(
                 'carrier_signature',
                 Speedy::getSignature()
-            )->delete();
+            )
+                ->where('country_code', $country->iso_alpha3)
+                ->delete();
 
             foreach ($cities as $city) {
                 $validated = $this->validated($city);

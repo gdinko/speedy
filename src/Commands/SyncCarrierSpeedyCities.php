@@ -102,7 +102,11 @@ class SyncCarrierSpeedyCities extends Command
         $bar->start();
 
         if (! empty($cities)) {
-            CarrierSpeedyCity::truncate();
+            
+            CarrierSpeedyCity::where(
+                'country_code3', 
+                $country->iso_alpha3
+            )->delete();
 
             foreach ($cities as $city) {
                 $validated = $this->validated($city);
